@@ -1,0 +1,8 @@
+name: Combat
+version: '${project.version}'
+main: dk.yzhy.Combat
+author: yzhy
+commands:
+  combat:
+    description: A combat command
+    aliases: ct
