@@ -10,7 +10,7 @@ public class DeathEvent implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event) {
         if (event.getEntity() != null) {
-            Player p = (Player) event.getEntity();
+            Player p = event.getEntity();
             if (API.inCombat(p)) {
                 API.setCombat(p,0);
             }
