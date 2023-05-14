@@ -16,7 +16,7 @@ public class DamageByEntityEvent implements Listener {
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!event.isCancelled()) {
             if (event.getEntity() instanceof Player) {
-                if (!event.getEntity().hasMetadata("event")) {
+                if (!event.getEntity().hasMetadata("CancelCombat")) {
                     Player victim = (Player) event.getEntity();
                     Player attacker;
                     if (!(event.getDamager() instanceof Player)) {
@@ -29,13 +29,13 @@ public class DamageByEntityEvent implements Listener {
                     if (!(groupvic.contains("vagt") || groupvic.contains("officer") || groupvic.contains("inspektør") || groupvic.contains("direktør"))) {
                         if (attacker != victim) {
                             if (API.getCombat(victim) < 15) {
-                                SeeCombat.seeCombat(victim.getPlayer(), 15);
+                                if (!event.getEntity().hasMetadata("CancelCombat")) {
+                                    SeeCombat.seeCombat(victim.getPlayer(), 15);
+                                }
                             }
                         }
-                    }
-                    if (!(group.contains("vagt") || group.contains("officer") || group.contains("inspektør") || group.contains("direktør"))) {
-                        if (API.getCombat(attacker) < 15) {
-                            SeeCombat.seeCombat(attacker.getPlayer(), 15);
+                    if ((!group.contains("vagt")) && (API.getCombat(attacker) < 15) && event.getEntity().hasMetadata("CancelCombat")) {
+                        SeeCombat.seeCombat(attacker.getPlayer(), 15);
                         }
                     }
                 }

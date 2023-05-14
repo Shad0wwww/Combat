@@ -1,0 +1,43 @@
+# Dette plugin er udviklet af yzhy og Shad0wsense.
+# Når du canceler eventet kommer man ikke i combat, så dette plugin virker
+# perfekt med vagt vs fange systemer, eller noget i den stil!
+
+# Alle retigheder af dette plugin ejes af yzhy.
+# Videresalg af dette plugin er ikke tilladt.
+# Kontakt yzhy#0001 på discord for hjælp & forslag.
+
+Combat:
+  Enabled: true
+  Tid: 15 #Tid man kommer i combat. (i sekunder)
+ActionBar:
+  Enabled: true
+  Tekst:
+    ICombat: 'Du er i combat i %tid%s!' #Brug %tid% for at få antallet sekunder man skal komme i combat! %attacker% of %victim% kan også bruges!
+    UdeCombat: 'Du er nu ude af combat!'
+Bypass:
+  Enabled: true
+  Permission: 'Combat.Bypass'
+  Groups:
+    - 'Vagt'
+    - 'Officer'
+    #Kræver PLACEHOLDERAPI og Vault!
+Beskeder:
+  Enabled: true
+  CombatEnable: 'Du er nu i combat!' # Du kan også bruge %tid% samt %attacker% of %victim% i denne besked!
+  CombatDisable: 'Du er nu ude af combat!' # Du kan også bruge %tid% samt %attacker% of %victim% i denne besked!
+
+# API HJÆLP
+# Skript & skript-reflect eksempel!
+
+#Import:
+  #dk.yzhy.utils.API
+
+# Du kan bruge:
+  #API.getCombat(Player) #Få en spillers combat-tid.
+  #API.setCombat(Player, 15) #Sætter spillerens combat til 15, tallet kan ændres.
+  #API.inCombat(Player) Returner true hvis spilleren er i combat, og returner false hvis ikke.
+
+
+# Hvis spilleren har metadataen "CancelCombat" kommer spilleren ikke i combat
+# Hvis spilleren har metadataen "CancelCombatActionbar" kommer spilleren ikke i combat
+# Hvis spilleren har metadataen "CancelCombatMessage" kommer spilleren ikke i combat
