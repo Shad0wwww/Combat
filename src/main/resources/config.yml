@@ -37,5 +37,3 @@ Beskeder:
 
 
 # Hvis spilleren har metadataen "CancelCombat" kommer spilleren ikke i combat
-# Hvis spilleren har metadataen "CancelCombatActionbar" kommer spilleren ikke i combat
-# Hvis spilleren har metadataen "CancelCombatMessage" kommer spilleren ikke i combat
