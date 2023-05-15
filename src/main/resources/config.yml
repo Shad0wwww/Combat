@@ -6,6 +6,8 @@
 # Videresalg af dette plugin er ikke tilladt.
 # Kontakt yzhy#0001 på discord for hjælp & forslag.
 
+#Reload med /combat reload!
+
 Combat:
   Enabled: true
   Tid: 15 #Tid man kommer i combat. (i sekunder)
