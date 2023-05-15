@@ -11,8 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public final class Combat extends JavaPlugin {
-    private static Combat instance;
+public final class Main extends JavaPlugin {
+    private static Main instance;
     public static Config mainConfig;
     public static FileConfiguration mainConfigYML;
     @Override
@@ -35,7 +35,7 @@ public final class Combat extends JavaPlugin {
         mainConfigYML = mainConfig.getConfig();
         ConfigLoader.loadALL();
     }
-    public static Combat getInstance() {
+    public static Main getInstance() {
         return instance;
     }
 

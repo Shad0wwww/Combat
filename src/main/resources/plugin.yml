@@ -1,6 +1,6 @@
 name: Combat
 version: '${project.version}'
-main: dk.yzhy.Combat
+main: dk.yzhy.Main
 author: yzhy
 commands:
   combat:
