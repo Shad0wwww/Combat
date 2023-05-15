@@ -12,17 +12,17 @@ Combat:
 ActionBar:
   Enabled: true
   Tekst:
-    ICombat: 'Du er i combat i %tid%s!' #Brug %tid% for at få antallet sekunder man skal komme i combat! %attacker% of %victim% kan også bruges!
-    UdeCombat: 'Du er nu ude af combat!'
+    ICombat: '&4&l[!] &7Du er i combat i &f%tid%s&7!' #Brug %tid% for at få antallet sekunder man skal komme i combat! %attacker% of %victim% kan også bruges!
+    UdeCombat: '&4&l[!] &7Du er nu ude af combat!'
 Bypass:
   Permission: 'Combat.Bypass'
 Beskeder:
   Enabled: true
-  CombatEnable: 'Du er nu i combat!' # Du kan også bruge %tid% i denne besked!
-  CombatDisable: 'Du er nu ude af combat!' # Du kan også bruge %tid% i denne besked!
+  CombatEnable: '&4&l[!] &7Du er nu i combat!' # Du kan også bruge %tid% i denne besked!
+  CombatDisable: '&4&l[!] &7Du er nu ude af combat!' # Du kan også bruge %tid% i denne besked!
   CombatCommand:
-    CombatEnabled: 'Hej %tid%'
-    CombatDisabled: 'Hej'
+    CombatEnabled: '&4&l[!] &7Du er i combat i &f%tid%s&7.'
+    CombatDisabled: '&4&l[!] &7Du er ikke i combat!'
 
 # API HJÆLP
 # Skript & skript-reflect eksempel!
