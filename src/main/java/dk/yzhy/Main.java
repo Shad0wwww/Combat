@@ -10,6 +10,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
@@ -22,18 +24,29 @@ public final class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new QuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new DeathEvent(), this);
         this.getCommand("combat").setExecutor(new dk.yzhy.commands.Combat());
+        ParseType();
         LoadYAML();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        System.out.println("[Combat] Combat unloaded!");
     }
     private void LoadYAML() {
         if (!(new File(getDataFolder(), "config.yml")).exists())saveResource("config.yml", false);
         mainConfig = new Config(this, null, "config.yml");
         mainConfigYML = mainConfig.getConfig();
         ConfigLoader.loadALL();
+    }
+    private void ParseType() {
+        try {
+            System.setProperty("file.encoding", "UTF-8");
+            Field charset = Charset.class.getDeclaredField("defaultCharset");
+            charset.setAccessible(true);
+            charset.set(null, null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static Main getInstance() {
         return instance;

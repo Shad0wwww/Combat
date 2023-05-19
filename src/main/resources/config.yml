@@ -17,6 +17,7 @@ ActionBar:
     ICombat: '&4&l[!] &7Du er i combat i &f%tid%s&7!' #Brug %tid% for at få antallet sekunder man skal komme i combat! %attacker% of %victim% kan også bruges!
     UdeCombat: '&4&l[!] &7Du er nu ude af combat!'
 Bypass:
+  Enabled: true
   Permission: 'Combat.Bypass'
 Beskeder:
   Enabled: true
