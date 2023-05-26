@@ -4,6 +4,7 @@ import dk.yzhy.Main;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
 import dk.yzhy.utils.SeeCombat;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -25,6 +26,7 @@ public class DamageByEntityEvent implements Listener {
                         } else {
                             attacker = (Player) event.getDamager();
                         }
+                        Bukkit.broadcastMessage(victim + " " + attacker);
                         Integer time = ConfigLoader.getInt("Combat.Tid");
                         if ((API.getCombat(victim) < time) && !victim.hasMetadata("CancelCombat") && attacker != victim) {
                             if (Boolean.parseBoolean(ConfigLoader.getString("Bypass.Enabled"))) {
@@ -32,7 +34,7 @@ public class DamageByEntityEvent implements Listener {
                                     SeeCombat.seeCombat(victim.getPlayer(), time);
                                 }
                             } else {
-                                SeeCombat.seeCombat(attacker.getPlayer(), time);
+                                SeeCombat.seeCombat(victim.getPlayer(), time);
                             }
                         }
                         if (((API.getCombat(attacker) < time) && !attacker.hasMetadata("CancelCombat"))) {
