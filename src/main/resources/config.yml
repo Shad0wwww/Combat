@@ -22,7 +22,9 @@ Beskeder:
   CombatCommand:
     CombatEnabled: '&4&l[!] &7Du er i combat i &f%tid%s&7.'
     CombatDisabled: '&4&l[!] &7Du er ikke i combat!'
-
+  BroadcastLogOut:
+    Enabled: true
+    Message: '&4&l[!] &7Spilleren &f%player%&7 loggede ud i combat!'
 # API HJÆLP
 # Skript & skript-reflect eksempel!
 

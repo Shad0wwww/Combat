@@ -1,6 +1,9 @@
 package dk.yzhy.listeners;
 
 import dk.yzhy.utils.API;
+import dk.yzhy.utils.ConfigLoader;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -10,6 +13,10 @@ public class QuitEvent implements Listener {
     public void PlayerQuitEvent(PlayerQuitEvent event) {
         if (API.inCombat(event.getPlayer())) {
             event.getPlayer().damage(999);
+            if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.BroadcastLogOut.Enabled"))) {
+                String m = ChatColor.translateAlternateColorCodes('&', ConfigLoader.getString("Beskeder.BroadcastLogOut.Message"));
+                Bukkit.broadcastMessage(m);
+            }
         }
     }
 }
