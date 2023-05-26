@@ -12,11 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
     public static Config mainConfig;
     public static FileConfiguration mainConfigYML;
+    public static ExecutorService executorService;
     @Override
     public void onEnable() {
         instance = this;
@@ -26,11 +29,13 @@ public final class Main extends JavaPlugin {
         this.getCommand("combat").setExecutor(new dk.yzhy.commands.Combat());
         ParseType();
         LoadYAML();
+        executorService = Executors.newFixedThreadPool(1);
     }
 
     @Override
     public void onDisable() {
         System.out.println("[Combat] Combat unloaded!");
+        executorService.shutdown();
     }
     private void LoadYAML() {
         if (!(new File(getDataFolder(), "config.yml")).exists())saveResource("config.yml", false);

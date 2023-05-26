@@ -5,5 +5,5 @@ author: yzhy
 description: Combat plugin!
 commands:
   combat:
-    description: A combat command
+    description: A combat command!
     aliases: ct

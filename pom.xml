@@ -6,7 +6,7 @@
 
     <groupId>dk</groupId>
     <artifactId>Combat</artifactId>
-    <version>0.5-PRE</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>Combat</name>

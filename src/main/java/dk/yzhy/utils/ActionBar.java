@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ActionBar{
     private static final String version = "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().substring(23);
-   public static void sendActionbar(Player player, String message) {
+    public static void sendActionbar(Player player, String message) {
 
         Constructor<?> constructor;
         Object a, packet = null;
