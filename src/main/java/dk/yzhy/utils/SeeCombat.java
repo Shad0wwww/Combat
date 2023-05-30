@@ -14,8 +14,7 @@ public class SeeCombat {
             player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), a));
             CombatSystem.combatTag(player);
             if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
-                String m = ConfigLoader.getString("Beskeder.CombatEnable");
-                m = ChatColor.translateAlternateColorCodes('&', m.replaceAll("%tid%", ConfigLoader.getString("Combat.Tid")));
+                String m = ConfigLoader.getString("Beskeder.CombatEnable").replaceAll("%tid%", ConfigLoader.getString("Combat.Tid"));
                 player.sendMessage(m);
             }
         }

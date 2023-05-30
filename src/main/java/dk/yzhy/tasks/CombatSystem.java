@@ -19,19 +19,17 @@ public class CombatSystem {
                         if (index >= 1) {
                             player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), index - 1));
                             if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
-                                String ab = ConfigLoader.getString("ActionBar.Tekst.ICombat");
-                                ab = ChatColor.translateAlternateColorCodes('&', ab.replaceAll("%tid%", String.valueOf(index)));
+                                String ab = ConfigLoader.getString("ActionBar.Tekst.ICombat").replaceAll("%tid%", String.valueOf(index));
                                 ActionBar.sendActionbar(player, ab);
                             }
                         } else {
                             player.removeMetadata("InCombat", Main.getInstance());
                             if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
-                                String ab = ConfigLoader.getString("ActionBar.Tekst.UdeCombat");
-                                ab = ChatColor.translateAlternateColorCodes('&', ab.replaceAll("%tid%", String.valueOf(index)));
+                                String ab = ConfigLoader.getString("ActionBar.Tekst.UdeCombat").replaceAll("%tid%", String.valueOf(index));
                                 ActionBar.sendActionbar(player, ab);
                             }
                             if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
-                                String m = ChatColor.translateAlternateColorCodes('&', ConfigLoader.getString("Beskeder.CombatDisable"));
+                                String m = ConfigLoader.getString("Beskeder.CombatDisable");
                                 player.sendMessage(m);
                             }
                             cancel();

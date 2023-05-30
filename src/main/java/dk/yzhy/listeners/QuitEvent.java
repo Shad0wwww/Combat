@@ -14,8 +14,7 @@ public class QuitEvent implements Listener {
         if (API.inCombat(event.getPlayer())) {
             event.getPlayer().damage(999);
             if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.BroadcastLogOut.Enabled"))) {
-                String m = ChatColor.translateAlternateColorCodes('&', ConfigLoader.getString("Beskeder.BroadcastLogOut.Message"));
-                m = m.replaceAll("%player%", String.valueOf(event.getPlayer()));
+                String m = ConfigLoader.getString("Beskeder.BroadcastLogOut.Message").replaceAll("%player%", String.valueOf(event.getPlayer()));
                 Bukkit.broadcastMessage(m);
             }
         }

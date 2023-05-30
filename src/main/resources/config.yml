@@ -5,18 +5,21 @@
 #Reload med /combat reload!
 
 Combat:
-  Enabled: true
+  Enabled: true #Skal combat være enabled?
   Tid: 15 #Tid man kommer i combat. (i sekunder)
+
 ActionBar:
-  Enabled: true
+  Enabled: true #Skal den vise en actionbar til spilleren?
   Tekst:
     ICombat: '&4&l[!] &7Du er i combat i &f%tid%s&7!' #Brug %tid% for at få antallet sekunder man skal komme i combat! %attacker% of %victim% kan også bruges!
     UdeCombat: '&4&l[!] &7Du er nu ude af combat!'
+
 Bypass:
-  Enabled: true
-  Permission: 'Combat.Bypass'
+  Enabled: true #Skal folk med permissionen bypass combat?
+  Permission: 'Combat.Bypass' #Bemærk at OPs også har denne permission!
+
 Beskeder:
-  Enabled: true
+  Enabled: true #Skal den sende beskeder?
   CombatEnable: '&4&l[!] &7Du er nu i combat!' # Du kan også bruge %tid% i denne besked!
   CombatDisable: '&4&l[!] &7Du er nu ude af combat!' # Du kan også bruge %tid% i denne besked!
   CombatCommand:
@@ -25,6 +28,7 @@ Beskeder:
   BroadcastLogOut:
     Enabled: true
     Message: '&4&l[!] &7Spilleren &f%player%&7 loggede ud i combat!'
+
 # API HJÆLP
 # Skript & skript-reflect eksempel!
 
