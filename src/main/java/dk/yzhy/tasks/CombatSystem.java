@@ -10,36 +10,33 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class CombatSystem {
     public static void combatTag(Player player) {
-        Main.executorService.submit(() -> {
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if (player.hasMetadata("InCombat")) {
-                        int index = player.getMetadata("InCombat").get(0).asInt();
-                        if (index >= 1) {
-                            player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), index - 1));
-                            if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
-                                String ab = ConfigLoader.getString("ActionBar.Tekst.ICombat").replaceAll("%tid%", String.valueOf(index));
-                                ActionBar.sendActionbar(player, ab);
-                            }
-                        } else {
-                            player.removeMetadata("InCombat", Main.getInstance());
-                            if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
-                                String ab = ConfigLoader.getString("ActionBar.Tekst.UdeCombat").replaceAll("%tid%", String.valueOf(index));
-                                ActionBar.sendActionbar(player, ab);
-                            }
-                            if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
-                                String m = ConfigLoader.getString("Beskeder.CombatDisable");
-                                player.sendMessage(m);
-                            }
-                            cancel();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (player.hasMetadata("InCombat")) {
+                    int index = player.getMetadata("InCombat").get(0).asInt();
+                    if (index >= 1) {
+                        player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), index - 1));
+                        if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
+                            String ab = ConfigLoader.getString("ActionBar.Tekst.ICombat").replaceAll("%tid%", String.valueOf(index));
+                            ActionBar.sendActionbar(player, ab);
                         }
                     } else {
+                        player.removeMetadata("InCombat", Main.getInstance());
+                        if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
+                            String ab = ConfigLoader.getString("ActionBar.Tekst.UdeCombat").replaceAll("%tid%", String.valueOf(index));
+                            ActionBar.sendActionbar(player, ab);
+                        }
+                        if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
+                            String m = ConfigLoader.getString("Beskeder.CombatDisable");
+                            player.sendMessage(m);
+                        }
                         cancel();
                     }
+                } else {
+                    cancel();
                 }
-            }.runTaskTimer(Main.getInstance(), 0L, 20L);
-        });
+            }
+        }.runTaskTimerAsynchronously(Main.getInstance(), 0L, 20L);
     }
-
 }

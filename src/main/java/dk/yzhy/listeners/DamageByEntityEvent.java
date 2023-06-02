@@ -4,6 +4,7 @@ import dk.yzhy.Main;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
 import dk.yzhy.utils.SeeCombat;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -14,7 +15,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class DamageByEntityEvent implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        Main.executorService.submit(() -> {
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
             if (Boolean.parseBoolean(ConfigLoader.getString("Combat.Enabled"))) {
                 if (!event.isCancelled()) {
                     if (event.getEntity() instanceof Player) {

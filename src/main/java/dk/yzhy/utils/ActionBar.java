@@ -1,6 +1,7 @@
 package dk.yzhy.utils;
 import dk.yzhy.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
@@ -21,7 +22,7 @@ public class ActionBar{
     }
 
     public static void sendActionbar(Player player, String message) {
-        Main.executorService.submit(() -> {
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
             try {
                 final Class<?> baseComponentClass = Class.forName(version + ".IChatBaseComponent");
                 constructor = Class.forName(version + ".PacketPlayOutChat").getConstructor(baseComponentClass, byte.class);
