@@ -3,6 +3,7 @@ package dk.yzhy.commands;
 import dk.yzhy.Main;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +21,7 @@ public class Combat implements CommandExecutor {
                 Main.mainConfigYML = Main.mainConfig.getConfig();
                 ConfigLoader.loadALL();
                 p.sendMessage("§aDu genindlæste configurationen & alle beskederne. §7(" + (System.currentTimeMillis() - tidBefore) + "ms)");
+                Bukkit.getOnlinePlayers().forEach(pl -> pl.removeMetadata("InCombat", Main.getInstance()));
             } catch (Exception e) {
                 p.sendMessage("§cNoget gik galt, tjek loggen! Kør evt. din config igennem en YML parser online!");
                 e.printStackTrace();

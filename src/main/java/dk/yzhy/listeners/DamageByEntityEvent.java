@@ -27,7 +27,7 @@ public class DamageByEntityEvent implements Listener {
                             attacker = (Player) event.getDamager();
                         }
                         Integer time = ConfigLoader.getInt("Combat.Tid");
-                        if ((API.getCombat(victim) < time) && !victim.hasMetadata("CancelCombat") && attacker != victim) {
+                        if ((API.getCombat(victim) < time) && attacker != victim) {
                             if (Boolean.parseBoolean(ConfigLoader.getString("Bypass.Enabled"))) {
                                 if (!victim.hasPermission(ConfigLoader.getString("Bypass.Permission"))) {
                                     SeeCombat.seeCombat(victim.getPlayer(), time);
@@ -36,7 +36,7 @@ public class DamageByEntityEvent implements Listener {
                                 SeeCombat.seeCombat(victim.getPlayer(), time);
                             }
                         }
-                        if (((API.getCombat(attacker) < time) && !attacker.hasMetadata("CancelCombat"))) {
+                        if ((API.getCombat(attacker) < time)) {
                             if (Boolean.parseBoolean(ConfigLoader.getString("Bypass.Enabled"))) {
                                 if (!attacker.hasPermission(ConfigLoader.getString("Bypass.Permission"))) {
                                     SeeCombat.seeCombat(attacker.getPlayer(), time);

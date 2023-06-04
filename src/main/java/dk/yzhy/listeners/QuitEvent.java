@@ -1,5 +1,6 @@
 package dk.yzhy.listeners;
 
+import dk.yzhy.Main;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
 import org.bukkit.Bukkit;

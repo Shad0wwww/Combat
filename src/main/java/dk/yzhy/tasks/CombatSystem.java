@@ -1,9 +1,8 @@
 package dk.yzhy.tasks;
 
 import dk.yzhy.Main;
-import dk.yzhy.utils.ActionBar;
+import dk.yzhy.utils.Actionbar;
 import dk.yzhy.utils.ConfigLoader;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,13 +18,13 @@ public class CombatSystem {
                         player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), index - 1));
                         if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
                             String ab = ConfigLoader.getString("ActionBar.Tekst.ICombat").replaceAll("%tid%", String.valueOf(index));
-                            ActionBar.sendActionbar(player, ab);
+                            Actionbar.sendActionbar(player, ab);
                         }
                     } else {
                         player.removeMetadata("InCombat", Main.getInstance());
                         if (Boolean.parseBoolean(ConfigLoader.getString("ActionBar.Enabled"))) {
                             String ab = ConfigLoader.getString("ActionBar.Tekst.UdeCombat").replaceAll("%tid%", String.valueOf(index));
-                            ActionBar.sendActionbar(player, ab);
+                            Actionbar.sendActionbar(player, ab);
                         }
                         if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
                             String m = ConfigLoader.getString("Beskeder.CombatDisable");

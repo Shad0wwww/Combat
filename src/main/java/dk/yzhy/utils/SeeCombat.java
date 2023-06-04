@@ -10,7 +10,7 @@ public class SeeCombat {
     public static void seeCombat(Player player, Integer a) {
         if (player.hasMetadata("InCombat")) {
             player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), a));
-        }else{
+        }else {
             player.setMetadata("InCombat", new FixedMetadataValue(Main.getInstance(), a));
             CombatSystem.combatTag(player);
             if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.Enabled"))) {
