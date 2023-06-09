@@ -1,16 +1,18 @@
 package dk.yzhy.utils;
 
-import dk.yzhy.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Actionbar {
     private static final String version = "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().substring(23);
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     public static void sendActionbar(Player player, String message) {
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
+        Runnable task = () -> {
             Constructor<?> constructor;
             Object a, packet = null;
 
@@ -30,6 +32,7 @@ public class Actionbar {
             } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException ex) {
                 ex.printStackTrace();
             }
-        });
+        };
+        executorService.submit(task);
     }
 }

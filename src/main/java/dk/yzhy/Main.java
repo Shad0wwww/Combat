@@ -12,8 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
@@ -31,6 +29,7 @@ public final class Main extends JavaPlugin {
     }
     @Override
     public void onDisable() {
+        getServer().getScheduler().cancelTasks(this);
         System.out.println("[Combat] Combat unloaded!");
     }
     private void LoadYAML() {

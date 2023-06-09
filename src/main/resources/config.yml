@@ -40,5 +40,3 @@ Beskeder:
   #API.setCombat(Player, 15) #Sætter spillerens combat til 15, tallet kan ændres.
   #API.inCombat(Player) Returner true hvis spilleren er i combat, og returner false hvis ikke.
 
-
-# Hvis spilleren har metadataen "CancelCombat" kommer spilleren ikke i combat

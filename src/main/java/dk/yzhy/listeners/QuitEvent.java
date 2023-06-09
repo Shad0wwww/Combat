@@ -15,8 +15,11 @@ public class QuitEvent implements Listener {
         if (API.inCombat(event.getPlayer())) {
             event.getPlayer().damage(999);
             if (Boolean.parseBoolean(ConfigLoader.getString("Beskeder.BroadcastLogOut.Enabled"))) {
-                String m = ConfigLoader.getString("Beskeder.BroadcastLogOut.Message").replaceAll("%player%", String.valueOf(event.getPlayer()));
+                String m = ConfigLoader.getString("Beskeder.BroadcastLogOut.Message").replaceAll("%player%", event.getPlayer().getName());
                 Bukkit.broadcastMessage(m);
+            }
+            if(event.getPlayer().hasMetadata("InCombat")){
+                event.getPlayer().removeMetadata("InCombat", Main.getInstance());
             }
         }
     }
