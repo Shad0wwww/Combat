@@ -2,7 +2,7 @@ package dk.yzhy.utils;
 
 import dk.yzhy.Main;
 import dk.yzhy.tasks.CombatSystem;
-import org.bukkit.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 
