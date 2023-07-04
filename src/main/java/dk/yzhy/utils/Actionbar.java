@@ -1,38 +1,35 @@
 package dk.yzhy.utils;
 
+import dk.yzhy.Combat;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class Actionbar {
-    private static final String version = "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().substring(23);
-    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
     public static void sendActionbar(Player player, String message) {
-        Runnable task = () -> {
-            Constructor<?> constructor;
-            Object a, packet = null;
-
-            try {
-                final Class<?> baseComponentClass = Class.forName(version + ".IChatBaseComponent");
-                constructor = Class.forName(version + ".PacketPlayOutChat").getConstructor(baseComponentClass, byte.class);
-                a = baseComponentClass.getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + message + "\"}");
-                packet = constructor.newInstance(a, (byte) 2);
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
-                ex.printStackTrace();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    Object handle = player.getClass().getMethod("getHandle").invoke(player);
+                    Object connection = handle.getClass().getField("playerConnection").get(handle);
+                    Class<?> chatSerializerClass = Class.forName("net.minecraft.server." + getVersion() + ".IChatBaseComponent$ChatSerializer");
+                    Class<?> packetClass = Class.forName("net.minecraft.server." + getVersion() + ".PacketPlayOutChat");
+                    Object chatComponent = chatSerializerClass.getMethod("a", String.class).invoke(null, "{\"text\":\"" + message + "\"}");
+                    Constructor<?> packetConstructor = packetClass.getConstructor(chatSerializerClass.getDeclaringClass(), byte.class);
+                    Object packet = packetConstructor.newInstance(chatComponent, (byte) 2);
+                    connection.getClass().getMethod("sendPacket", Class.forName("net.minecraft.server." + getVersion() + ".Packet")).invoke(connection, packet);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
-
-            try {
-                final Object entity = player.getClass().getMethod("getHandle").invoke(player);
-                final Object playerConnection = entity.getClass().getField("playerConnection").get(entity);
-                playerConnection.getClass().getMethod("sendPacket", Class.forName(version + ".Packet")).invoke(playerConnection, packet);
-            } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException ex) {
-                ex.printStackTrace();
-            }
-        };
-        executorService.submit(task);
+        }.runTaskAsynchronously(Combat.getInstance());
+    }
+    private static String getVersion() {
+        String packageName = Bukkit.getServer().getClass().getPackage().getName();
+        return packageName.substring(packageName.lastIndexOf('.') + 1);
     }
 }

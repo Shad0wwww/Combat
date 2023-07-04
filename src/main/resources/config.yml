@@ -20,8 +20,8 @@ Bypass:
 
 Beskeder:
   Enabled: true #Skal den sende beskeder?
-  CombatEnable: '&4&l[!] &7Du er nu i combat!' # Du kan også bruge %tid% i denne besked!
-  CombatDisable: '&4&l[!] &7Du er nu ude af combat!' # Du kan også bruge %tid% i denne besked!
+  CombatEnable: '&4&l[!] &7Du er nu i combat!'
+  CombatDisable: '&4&l[!] &7Du er nu ude af combat!'
   CombatCommand:
     CombatEnabled: '&4&l[!] &7Du er i combat i &f%tid%s&7.'
     CombatDisabled: '&4&l[!] &7Du er ikke i combat!'

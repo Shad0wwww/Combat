@@ -1,6 +1,5 @@
 package dk.yzhy.commands;
 
-import dk.yzhy.Main;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
 import org.bukkit.Bukkit;
@@ -17,11 +16,11 @@ public class Combat implements CommandExecutor {
         if(args.length >= 1 && args[0].equalsIgnoreCase("reload") && p.hasPermission("combat.admin")){
             try {
                 long tidBefore = System.currentTimeMillis();
-                Main.mainConfig.reloadConfig();
-                Main.mainConfigYML = Main.mainConfig.getConfig();
+                dk.yzhy.Combat.mainConfig.reloadConfig();
+                dk.yzhy.Combat.mainConfigYML = dk.yzhy.Combat.mainConfig.getConfig();
                 ConfigLoader.loadALL();
                 p.sendMessage("§aDu genindlæste configurationen & alle beskederne. §7(" + (System.currentTimeMillis() - tidBefore) + "ms)");
-                Bukkit.getOnlinePlayers().forEach(pl -> pl.removeMetadata("InCombat", Main.getInstance()));
+                Bukkit.getOnlinePlayers().forEach(pl -> pl.removeMetadata("InCombat", dk.yzhy.Combat.getInstance()));
             } catch (Exception e) {
                 p.sendMessage("§cNoget gik galt, tjek loggen! Kør evt. din config igennem en YML parser online!");
                 e.printStackTrace();

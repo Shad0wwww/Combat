@@ -1,9 +1,8 @@
 package dk.yzhy.utils;
 
-import dk.yzhy.Main;
+import dk.yzhy.Combat;
 import org.bukkit.ChatColor;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,14 +10,14 @@ public class ConfigLoader {
     static HashMap<String, String> messages;
     public static void loadALL() {
         messages = new HashMap<>();
-        for (String path : Main.mainConfigYML.getKeys(true)) {
-            if (!Main.mainConfigYML.isConfigurationSection(path)) {
-                if(Main.mainConfigYML.getStringList(path) != null && Main.mainConfigYML.isList(path)) {
-                    messages.put(path, FromList(Main.mainConfigYML.getStringList(path)));
+        for (String path : Combat.mainConfigYML.getKeys(true)) {
+            if (!Combat.mainConfigYML.isConfigurationSection(path)) {
+                if(Combat.mainConfigYML.getStringList(path) != null && Combat.mainConfigYML.isList(path)) {
+                    messages.put(path, FromList(Combat.mainConfigYML.getStringList(path)));
                     continue;
                 }
-                if(Main.mainConfigYML.getString(path) != null) {
-                    messages.put(path, FromString(Main.mainConfigYML.getString(path)));
+                if(Combat.mainConfigYML.getString(path) != null) {
+                    messages.put(path, FromString(Combat.mainConfigYML.getString(path)));
                 }
             }
         }
@@ -33,7 +32,7 @@ public class ConfigLoader {
         if(messages.containsKey(path)){
             return Integer.valueOf(messages.get(path));
         }
-        return 0;
+        return 1;
     }
     public static String FromList(List<String> s) {
         StringBuilder sb = new StringBuilder();

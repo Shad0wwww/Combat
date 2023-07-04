@@ -1,10 +1,9 @@
 package dk.yzhy.listeners;
 
-import dk.yzhy.Main;
+import dk.yzhy.Combat;
 import dk.yzhy.utils.API;
 import dk.yzhy.utils.ConfigLoader;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -19,7 +18,7 @@ public class QuitEvent implements Listener {
                 Bukkit.broadcastMessage(m);
             }
             if(event.getPlayer().hasMetadata("InCombat")){
-                event.getPlayer().removeMetadata("InCombat", Main.getInstance());
+                event.getPlayer().removeMetadata("InCombat", Combat.getInstance());
             }
         }
     }

@@ -1,8 +1,8 @@
 name: Combat
 version: '${project.version}'
-main: dk.yzhy.Main
+main: dk.yzhy.Combat
 author: yzhy
-description: Combat plugin!
+description: Combat plugin with good performance.
 commands:
   combat:
     description: A combat command!
