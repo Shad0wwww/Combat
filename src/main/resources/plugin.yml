@@ -7,3 +7,5 @@ commands:
   combat:
     description: A combat command!
     aliases: ct
+  setcombat:
+    permission: combat.set

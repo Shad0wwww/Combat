@@ -37,6 +37,6 @@ public class CombatSystem {
                     cancel();
                 }
             }
-        }.runTaskTimerAsynchronously(Combat.getInstance(), 0L, 20L);
+        }.runTaskTimer(Combat.getInstance(), 0L, 20L);
     }
 }

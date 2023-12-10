@@ -5,7 +5,6 @@ import dk.yzhy.listeners.DeathEvent;
 import dk.yzhy.listeners.QuitEvent;
 import dk.yzhy.utils.Config;
 import dk.yzhy.utils.ConfigLoader;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +23,7 @@ public final class Combat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new QuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new DeathEvent(), this);
         this.getCommand("combat").setExecutor(new dk.yzhy.commands.Combat());
-        EnableBstats();
+        this.getCommand("setcombat").setExecutor(new dk.yzhy.commands.SetCombat());
     }
 
     @Override
@@ -42,9 +41,5 @@ public final class Combat extends JavaPlugin {
 
     public static Combat getInstance() {
         return instance;
-    }
-    public void EnableBstats(){
-        int pluginId = 18874;
-        Metrics metrics = new Metrics(this, pluginId);
     }
 }
